@@ -5,7 +5,7 @@
 // @description  Keep triggering pagination on Amazon
 // @author       Sporkyy
 // @match        https://*.amazon.com/*
-// @icon         https://www.google.com/s2/favicons?domain=amazon.com
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=amazon.com
 // @grant        none
 // ==/UserScript==
 
