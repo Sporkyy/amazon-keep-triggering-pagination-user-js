@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Amazon - Keep Triggering Pagination
 // @namespace    https://github.com/Sporkyy/
-// @version      1.0.1
+// @version      1.0.2
 // @description  Keep triggering pagination on Amazon
 // @author       Sporkyy
 // @match        https://*.amazon.com/*
@@ -12,12 +12,18 @@
 (() => {
   'use strict';
 
-  const qsa = (s, c = document) => c.querySelectorAll(s);
+  const qs = (s, c = document) => c.querySelector(s);
 
-  const keepTriggering = () => {
-    const triggers = qsa('*[class*="pagination-trigger"]');
-    for (const trigger of triggers) trigger.click();
+  const selectors = [
+    // Bad things happened when clicking on **all** the other months
+    '#currentDelivery span[class*="pagination-trigger"]',
+    '#mysContainer span[class*="pagination-trigger"]',
+  ].join(',');
+
+  const keepPaging = () => {
+    const trigger = qs(selectors);
+    if (trigger) trigger.click();
   };
 
-  window.setInterval(keepTriggering, 1000);
+  window.setInterval(keepPaging, 1000);
 })();
